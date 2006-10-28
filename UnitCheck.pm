@@ -7,7 +7,7 @@ require DynaLoader;
 use AutoLoader;
 
 our @ISA = qw(DynaLoader);
-our $VERSION = '0.10';
+our $VERSION = '0.12';
 
 bootstrap Check::UnitCheck $VERSION;
 
@@ -43,12 +43,13 @@ Check::UnitCheck - Use best of CHECK or UNITCHECK
 
 Perl 5.10.0 will include the UNITCHECK block.  This block runs the
 moment the compilation unit in which it was defined has finished
-compiling.  Perl before that has only the CHECK block, which runs once
-global compilation has completed, which might or might not be at the
-same time that the compilation unit which defines it has finished.
+compiling.  Perl versions before that had only the CHECK block, which
+runs once global compilation has completed, which might or might not
+be at the same time that the compilation unit which defines it has
+finished.
 
 This module allows you to define a block which will run as a UNITCHECK
-block in Perl that allow that, or as a CHECK block in Perls that do
+block in Perls that allow that, or as a CHECK block in Perls that do
 not.  This should allow you to use UNITCHECK semantics in a CPAN
 module, while having a moderately graceful fallback for versions of
 perl that cannot support that.
@@ -71,9 +72,9 @@ You instead say:
    ... code ...
  };
 
-At the moment you can only do one sub at once.  In the future extra
-options might be provided to allow you to inject these blocks into
-other modules.
+At the moment you can only do one sub at once (you can C<use> the
+module more than once, though).  In the future extra options might be
+provided to allow you to inject these blocks into other modules.
 
 If you want to push a UNITCHECK block into the queue of a compilation
 unit that has imported you, then you can do so by calling:
@@ -100,8 +101,13 @@ very complicated way of writing CHECK blocks.
 
 Alex Gough (alex@earth.li) http://the.earth.li/~alex/
 
+=head1 COPYRIGHT
+
+This module is (c) Alex Gough, 2006.  You may use and distribute it
+under the same terms as Perl itself.
+
 =head1 SEE ALSO
 
-L<perl>.
+L<perl>.  L<Manip::END>.
 
 =cut
